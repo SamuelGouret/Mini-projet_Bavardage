@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -95,6 +96,8 @@ public class InterBavard extends JFrame implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 			Object  src=e.getSource();
 			if (src.equals(broadcast)) {  
+				/* Déclanche la fonction generatePapotageEvent de la classe Bavard, avec en parametre le texte entré dans zone de message
+				(en dessous de "Tapez votre message ici") et le nom du bavard actuel ("connecté") */
 				connecté.generatePapotageEvent(zoneMessage.getText(), connecté.nom);
 			}				
 	}
