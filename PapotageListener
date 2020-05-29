@@ -1,0 +1,6 @@
+package finales;
+
+public interface PapotageListener {
+	public String actionPerformed(PapotageEvent pe);
+			 
+	}
