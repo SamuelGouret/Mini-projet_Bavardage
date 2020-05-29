@@ -1,0 +1,70 @@
+package finales;
+import java.util.ArrayList;
+import java.util.*;
+
+public class Concierge implements PapotageListener{
+	public ArrayList<Bavard> lstDeBavard = new ArrayList <Bavard>();
+
+	public int verifNom(String str){
+		int val = 0;
+		for (Bavard e:lstDeBavard) {
+			if(e.nom.equals(str))
+				val = 1;				
+		}
+		return val;
+	}
+	
+	public void addBavard(Bavard b){
+
+		boolean available = true;
+		for (Bavard b0:lstDeBavard) {
+			if(b0.nom.equals(b.nom))
+				available = false;
+		}
+		if(available) {
+			this.lstDeBavard.add(b);
+			System.out.println("Le bavard "+ b.nom +" s'est connecté à la messagerie");
+		}
+		else
+			System.out.println("Nom d'utilisateur déjà existant, merci de saisir un autre nom.");
+	}
+
+	public String actionPerformed(PapotageEvent pe ) {
+		for(Bavard b2:this.lstDeBavard) {
+			b2.actionPerformed(pe);
+		}
+		return(pe.getCorps());
+	}
+
+	
+	public Bavard createBavard(String nom,Concierge c){
+		boolean check = false;
+		for(Bavard b3:lstDeBavard) {
+			if(b3.nom.equals(nom)) {
+				check = true;
+			}
+		}
+		if(check == false) {
+			Bavard b4 = new Bavard(nom,c);
+			b4.addPapotageListener(this);
+			this.addBavard(b4);
+			return b4;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public void displayClient() {
+		System.out.println("");
+		for(Bavard e:lstDeBavard) {
+			System.out.println(e.nom);
+		}
+	}
+	
+	/*public void addingListener(Bavard b5, Bavard b6) {
+		b5.addPapotageListener(b6);
+	}*/
+	
+}
+
