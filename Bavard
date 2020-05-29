@@ -6,48 +6,28 @@ public class Bavard implements PapotageListener{
 	private Concierge c;
 	public String nom;
 	public InterBavard pageMessagerie;
-	private boolean connecté = true;
-	
-	ArrayList <PapotageListener> listeners= new ArrayList <PapotageListener>();
 
+	// Constructeur
 	public Bavard(String nom,Concierge c){
 		this.c = c;
 		this.nom = nom;
 		pageMessagerie = new InterBavard(this,c);
 	}
 	
-	
-	public void afficherMessage(PapotageEvent e) {
-		System.out.println("Sujet : "+e.getSujet()+".\n Corps : "+e.getCorps()+".");
-	}
-	
+	// Generation d'un événement PapotageEvent
 	public void generatePapotageEvent(String messag, String str){
-		PapotageEvent pe = new PapotageEvent(this, "msg", messag);
+		PapotageEvent pe = new PapotageEvent(this, messag);
 		c.actionPerformed(pe);
 		}
 	
-	
+	// Recupere les informations du message tapé par un bavard donné, créé et affiche une ligne à ajouter dans le chat de tous les bavards
 	public String actionPerformed(PapotageEvent pe) {
 		Font f1 = pageMessagerie.zoneDeChat.getFont();
-		System.out.println("Done"+this.nom);
 		String ligneChat2 = pe.getCorps();
 		String ligneChat1 = pageMessagerie.zoneDeChat.getText()+"\n"+pe.getNom().nom+" a dit : ";
 		pageMessagerie.zoneDeChat.setText(ligneChat1+ligneChat2);
 		pageMessagerie.zoneDeChat.setFont(f1.deriveFont(f1.getStyle() | Font.BOLD));
-		//pageMessagerie.actualise();
 		return("");
-	}
-	
-	public void addPapotageListener(PapotageListener pl){
-		listeners.add(pl);
-	}
-	
-	public void setConnected() {
-		boolean c = this.estConnecté();
-		this.connecté = !c;
-	}
-	public boolean estConnecté() {
-		return this.connecté;
 	}
 }
 
