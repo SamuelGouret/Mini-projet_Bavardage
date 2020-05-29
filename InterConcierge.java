@@ -102,8 +102,6 @@ public class InterConcierge extends JFrame implements ActionListener{
 					concierge.addBavard(bvrd);
 					voidlbl.setText("");
 					pan.updateUI();
-					for (Bavard bvr:concierge.lstDeBavard) {
-						}
 				}
 				// Si un nom qui a été déjà saisi est entré, alors on affiche un message d'erreur et on ne créer pas de bavard
 				else if(concierge.verifNom(nomUti.getText())==1){
@@ -111,6 +109,7 @@ public class InterConcierge extends JFrame implements ActionListener{
 					voidlbl.setText("Nom d'utilisateur déjà existant");
 					System.out.println("Nom d'utilisateur déjà existant, merci de saisir un autre pseudonyme.");
 				}
+				
 			}
 		}	
 }
