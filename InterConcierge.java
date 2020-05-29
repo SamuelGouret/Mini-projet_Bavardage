@@ -111,7 +111,6 @@ public class InterConcierge extends JFrame implements ActionListener{
 					voidlbl.setText("Nom d'utilisateur déjà existant");
 					System.out.println("Nom d'utilisateur déjà existant, merci de saisir un autre pseudonyme.");
 				}
-				
 			}
 		}	
 }
