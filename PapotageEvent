@@ -1,0 +1,32 @@
+package finales;
+
+import java.util.EventObject;
+
+public class PapotageEvent extends EventObject{
+	private Bavard bavard;
+	private String corps, sujet;
+	public PapotageEvent(Object source,String sujet, String corps) {
+		super(source);
+		this.sujet = sujet;
+		this.corps = corps;
+		bavard = (Bavard)source;
+	}
+	public Bavard getNom() {
+		return this.bavard;
+	}
+	public void setBavard(Bavard b) {
+		this.bavard = b;
+	}
+	public String getCorps() {
+		return this.corps;
+	}
+	public void setCorps(String corpse) {
+		this.corps = corpse;
+	}
+	public String getSujet() {
+		return this.sujet;
+	}
+	public void setSujet(String ss) {
+		this.sujet = ss;
+	}
+}
