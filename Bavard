@@ -1,0 +1,55 @@
+package finales;
+import java.awt.Font;
+import java.util.ArrayList;
+
+public class Bavard implements PapotageListener{
+	private Concierge c;
+	public String nom;
+	public InterBavard pageMessagerie;
+	private boolean connecté = true;
+	
+	ArrayList <PapotageListener> listeners= new ArrayList <PapotageListener>();
+
+	public Bavard(String nom,Concierge c){
+		this.c = c;
+		this.nom = nom;
+		pageMessagerie = new InterBavard(this,c);
+	}
+	
+	
+	public void afficherMessage(PapotageEvent e) {
+		System.out.println("Sujet : "+e.getSujet()+".\n Corps : "+e.getCorps()+".");
+	}
+	
+	public void generatePapotageEvent(String messag, String str){
+		PapotageEvent pe = new PapotageEvent(this, "msg", messag);
+		c.actionPerformed(pe);
+		}
+	
+	
+	public String actionPerformed(PapotageEvent pe) {
+		Font f1 = pageMessagerie.zoneDeChat.getFont();
+		System.out.println("Done"+this.nom);
+		String ligneChat2 = pe.getCorps();
+		String ligneChat1 = pageMessagerie.zoneDeChat.getText()+"\n"+pe.getNom().nom+" a dit : ";
+		pageMessagerie.zoneDeChat.setText(ligneChat1+ligneChat2);
+		pageMessagerie.zoneDeChat.setFont(f1.deriveFont(f1.getStyle() | Font.BOLD));
+		//pageMessagerie.actualise();
+		return("");
+	}
+	
+	public void addPapotageListener(PapotageListener pl){
+		listeners.add(pl);
+	}
+	
+	public void setConnected() {
+		boolean c = this.estConnecté();
+		this.connecté = !c;
+	}
+	public boolean estConnecté() {
+		return this.connecté;
+	}
+
+
+}
+
